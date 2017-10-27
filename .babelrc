@@ -1,0 +1,33 @@
+{
+  "env": {
+    "development": {
+      "presets": [
+        "stage-0",
+        "es2015"
+      ],
+      "plugins": [
+        "transform-class-properties",
+        "transform-decorators",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements",
+        [
+          "babel-plugin-inline-import",
+          {
+            "extensions": [
+              ".json"
+            ]
+          }
+        ],
+        [
+          "transform-runtime",
+          {
+            "helpers": false,
+            "polyfill": false,
+            "regenerator": true,
+            "moduleName": "babel-runtime"
+          }
+        ]
+      ]
+    }
+  }
+}
