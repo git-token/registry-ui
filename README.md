@@ -10,7 +10,7 @@
 <br/>
 </p>
 
-# GitToken Auction User Interface
+# GitToken Registry User Interface
 
 
 React components for interacting with GitToken Solidity Smart Contracts
