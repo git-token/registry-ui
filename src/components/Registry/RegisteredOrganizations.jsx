@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, Table, Button, Panel } from 'react-bootstrap'
 
-import Summary from '../Organization/Summary.jsx'
+import Summary from '../../../dist/components/Organization/Summary'
+
 
 class RegisteredOrganizationsComponent extends Component {
   constructor() {
