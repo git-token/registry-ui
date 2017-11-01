@@ -21,7 +21,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          plugins: ['transform-runtime'],
+          plugins: ['transform-runtime', 'transform-react-jsx'],
           presets: ['env', 'react', 'stage-0', 'es2015']
         }
       }, {

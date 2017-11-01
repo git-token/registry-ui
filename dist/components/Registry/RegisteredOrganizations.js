@@ -16,7 +16,9 @@ var _reactRedux = require('react-redux');
 
 var _reactBootstrap = require('react-bootstrap');
 
-var _index = require('../Organization/index');
+var _Summary = require('../Organization/Summary.jsx');
+
+var _Summary2 = _interopRequireDefault(_Summary);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65,7 +67,7 @@ var RegisteredOrganizationsComponent = function (_Component) {
           header: _jsx('h2', {}, void 0, _organization)
         }, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
           sm: 4
-        }, void 0, _jsx(_index.Summary, {
+        }, void 0, _jsx(_Summary2.default, {
           organization: organizations[organization]
         })), _jsx(_reactBootstrap.Col, {
           sm: 8

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, Table, Button, Panel } from 'react-bootstrap'
 
-import { Summary } from '../Organization/index'
+import Summary from '../Organization/Summary.jsx'
 
 class RegisteredOrganizationsComponent extends Component {
   constructor() {
