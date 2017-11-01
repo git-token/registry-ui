@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Grid, Row, Col, Panel, Button } from 'react-bootstrap'
 
+import RegisteredOrganizations from '../../dist/components/Registry/RegisteredOrganizations'
 
 import {
   registryActions
