@@ -4,7 +4,7 @@ import createHistory from 'history/createBrowserHistory'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 
-import * as Reducers from './reducers/index'
+import Reducers from 'gittoken-reducers/dist/index'
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()

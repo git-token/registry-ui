@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import Promise, { promisifyAll } from 'bluebird'
 import GitHubAPI from 'github-api'
-
+import Tx from 'ethereumjs-tx'
 import GitTokenRegistry from 'gittoken-contracts/build/contracts/GitTokenRegistry.json'
 import RegistryWorker from 'gittoken-web-workers/dist/Registry.worker.js'
 
@@ -73,6 +73,28 @@ export default class RegistryActions {
     }
   }
 
+  signTransaction({ params, method }) {
+    return new Promise((resolve, reject) => {
+      getAccount().then((account) => {
+        const data = this.registry[method].getData(...params, { data: unlinked_binary })
+
+        const tx = new Tx({
+          from: account,
+          to: this.registry.address,
+          data,
+          value: 0,
+          gasLimit: 1e6, // set higher?
+          gas: 4e9
+        })
+
+        console.log('tx', tx)
+
+      }).catch((error) => {
+        reject(error)
+      })
+    })
+  }
+
   sendTransaction({ params, method }) {
     return new Promise((resolve, reject) => {
       this.registry[method](...params, (error, txHash) => {
@@ -82,8 +104,33 @@ export default class RegistryActions {
     })
   }
 
+  setAccount() {
+    return (dispatch) => {
+      getAccount().then((account) => {
+        dispatch({
+          type: 'SET_ACCOUNT_DETAILS',
+          id: 'account',
+          value: account
+        })
+      }).catch((error) => {
+        console.log('setAccount::error', error)
+      })
+    }
+  }
+
+  getAccount() {
+    return new Promise((resolve, reject) => {
+      window.web3.eth.getAccounts((error, accounts) => {
+        if (error) { reject(error) }
+        console.log('accounts', accounts)
+        resolve(accounts[0])
+      })
+    })
+  }
+
   validateAdmin({ username, token, organization }) {
     return new Promise((resolve, reject) => {
+      // console.log('username, token, organization', username, token, organization)
       const github = new GitHubAPI({ username, token })
       const user = github.getUser()
       const org = github.getOrganization(organization)
@@ -131,7 +178,7 @@ export default class RegistryActions {
           const { _token } = args
 
           dispatch({
-            type: 'SET_REGISTRY_ORGANIZATION_VALUE',
+            type: 'SET_REGISTRY_ORGANIZATION_DETAILS',
             id: _token,
             value: args
           })

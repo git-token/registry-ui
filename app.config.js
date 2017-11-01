@@ -1,4 +1,4 @@
 module.exports = {
   torvaldsNetwork: 'https://torvalds.gittoken.io',
-  registryAddress: '0x34a88a4b714ffc02ecf2da5e83f2bbd860700948'
+  registryAddress: '0x5cf572991e598f6213fe7faf4635ea29edd8718d'
 }

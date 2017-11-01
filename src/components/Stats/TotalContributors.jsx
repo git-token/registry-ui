@@ -62,7 +62,7 @@ class TotalContributorsComponent extends Component {
 
 const mapStoreToProps = (store, props) => {
   return {
-    registry: store.registry
+    Registry: store.Registry
   }
 }
 

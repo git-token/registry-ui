@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Grid, Row, Col, Table, Button } from 'react-bootstrap'
+import { Grid, Row, Col, Panel, Button } from 'react-bootstrap'
 
-import { Register } from './Registration/index'
+import { Register, RegisteredOrganizations } from './Registry/index'
 
 import {
   TotalContributors,
@@ -11,13 +11,6 @@ import {
   TotalTokens
 } from './Stats/index'
 
-import {
-  RegisteredOrganizations
-} from './Registry/index'
-
-import {
-  NetworkLogo
-} from './SVG/index'
 
 import {
   registryActions
@@ -32,54 +25,27 @@ class MainComponent extends Component {
     const { dispatch } = this.props
 
     dispatch(registryActions.getRegitrations())
-    // dispatch(registryActions.watchRegitrations({}))
   }
 
   render() {
-    const { dispatch, register: { showRegistration } } = this.props
+    const { dispatch, Registry: { organizations }, Register: { showRegistration } } = this.props
 
     return (
-      <Grid>
-        <Row>
-          <Col sm={12} style={{ textAlign: 'center' }}>
-            <NetworkLogo width={'35%'} style={{ marginTop: '-35px' }} />
-          <h1 style={{ fontSize: '96px', marginTop: '-65px' }}>GitToken</h1>
-            <h1>Token Registry</h1>
-            <br/>
-            <hr/>
-          </Col>
-        </Row>
-        <br/>
-        <Row>
-          <Col sm={4} >
-            <TotalOrganizations />
-          </Col>
-          <Col sm={4} >
-            <TotalTokens />
-          </Col>
-          <Col sm={4} >
-            <TotalContributors />
-          </Col>
-        </Row>
-        <br/>
-        <Row>
-          <Col sm={12} >
-            <Register />
-            <Button
-              bsSize={'lg'}
-              bsStyle={'primary'}
-              onClick={() => { dispatch({ type: 'SET_REGISTRATION_VALUE', id: 'showRegistration', value: !showRegistration }) }}
-              block
-            >
-              { !showRegistration ? 'Click to Register GitHub Organization' : 'Close Registration' }
-            </Button>
-            <br/>
-            <hr/>
-            <br/>
-            <RegisteredOrganizations />
-          </Col>
-        </Row>
-      </Grid>
+      <div>
+        <Panel style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            margin: '5px',
+            borderStyle: 'solid',
+            borderColor: '#e95420',
+            height: '1200px'
+          }}>
+            <Row>
+              <Col sm={12}>
+                <RegisteredOrganizations />
+              </Col>
+            </Row>
+          </Panel>
+      </div>
     )
   }
 }
@@ -87,7 +53,8 @@ class MainComponent extends Component {
 
 const mapStoreToProps = (store, props) => {
   return {
-    register: store.register
+    Register: store.Register,
+    Registry: store.Registry
   }
 }
 

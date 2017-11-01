@@ -23,7 +23,7 @@ class TotalOrganizationsComponent extends Component {
   }
 
   render() {
-    const { registry: { organizations } } = this.props
+    const { Registry: { organizations } } = this.props
 
     console.log('organizations', organizations)
 
@@ -51,10 +51,10 @@ class TotalOrganizationsComponent extends Component {
               }}
               data={Object.keys(organizations).map((organization, i) => {
                 console.log('organizations[organization]', organizations[organization])
-                const { date } = organizations[organization]
+                const { _date } = organizations[organization]
                 return {
                   y: i+1,
-                  x: new Date(date.toNumber() * 1000).getTime()
+                  x: new Date(_date.toNumber() * 1000).getTime()
                 }
               })}
             />
@@ -73,7 +73,7 @@ class TotalOrganizationsComponent extends Component {
 
 const mapStoreToProps = (store, props) => {
   return {
-    registry: store.registry
+    Registry: store.Registry
   }
 }
 
