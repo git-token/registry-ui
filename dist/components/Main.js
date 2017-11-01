@@ -16,11 +16,7 @@ var _reactRedux = require('react-redux');
 
 var _reactBootstrap = require('react-bootstrap');
 
-var _index = require('./Registry/index');
-
-var _index2 = require('./Stats/index');
-
-var _index3 = require('../actions/index');
+var _index = require('../actions/index');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,7 +28,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var _ref = _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
   sm: 12
-}, void 0, _jsx(_index.RegisteredOrganizations, {})));
+}, void 0, _jsx(RegisteredOrganizations, {})));
 
 var MainComponent = function (_Component) {
   _inherits(MainComponent, _Component);
@@ -49,7 +45,7 @@ var MainComponent = function (_Component) {
       var dispatch = this.props.dispatch;
 
 
-      dispatch(_index3.registryActions.getRegitrations());
+      dispatch(_index.registryActions.getRegitrations());
     }
   }, {
     key: 'render',

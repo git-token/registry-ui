@@ -3,14 +3,6 @@ import { connect } from 'react-redux'
 
 import { Grid, Row, Col, Panel, Button } from 'react-bootstrap'
 
-import { Register, RegisteredOrganizations } from './Registry/index'
-
-import {
-  TotalContributors,
-  TotalOrganizations,
-  TotalTokens
-} from './Stats/index'
-
 
 import {
   registryActions
