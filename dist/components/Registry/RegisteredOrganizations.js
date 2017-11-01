@@ -16,7 +16,7 @@ var _reactRedux = require('react-redux');
 
 var _reactBootstrap = require('react-bootstrap');
 
-var _Summary = require('../Organization/Summary.jsx');
+var _Summary = require('../../../dist/components/Organization/Summary');
 
 var _Summary2 = _interopRequireDefault(_Summary);
 
