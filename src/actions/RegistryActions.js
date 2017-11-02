@@ -1,14 +1,20 @@
 import Web3 from 'web3'
 import Promise, { promisifyAll } from 'bluebird'
 import GitHubAPI from 'github-api'
+import axios, { post } from 'axios'
 import Tx from 'ethereumjs-tx'
 import GitTokenRegistry from 'gittoken-contracts/build/contracts/GitTokenRegistry.json'
 import RegistryWorker from 'gittoken-web-workers/dist/Registry.worker.js'
 
-const { abi, unlinked_binary } = JSON.parse(GitTokenRegistry)
+const { abi, unlinked_binary, networks } = JSON.parse(GitTokenRegistry)
+
 
 export default class RegistryActions {
-  constructor({ torvaldsNetwork, registryAddress }) {
+  constructor({
+    torvaldsNetwork,
+    registryAddress,
+    registryAPI
+  }) {
 
     // Torvalds Network
     this.torvalds = new Web3(new Web3.providers.HttpProvider(torvaldsNetwork))
@@ -16,12 +22,18 @@ export default class RegistryActions {
     // Registry on the Main Ethereum Network
     this.registry = window.web3.eth.contract(abi).at(registryAddress)
 
+    // Registry Http Service
+    this.registryAPI = registryAPI
 
-
-    this.worker = new RegistryWorker()
-    this.worker.addEventListener('message', (msg) => {
+    this.registryWorker = new RegistryWorker()
+    this.registryWorker.addEventListener('message', (msg) => {
       console.log('Received Message from Worker', msg)
     })
+
+    this.registryWorker.postMessage(JSON.stringify({
+      event: 'configure',
+      payload: { registryAPI }
+    }))
 
   }
 
@@ -70,6 +82,15 @@ export default class RegistryActions {
       }).catch((error) => {
         console.log('error', error)
       })
+    }
+  }
+
+  verifyOrganization({ admin, username, token, organization }) {
+    return (dispatch) => {
+      this.registryWorker.postMessage(JSON.stringify({
+        event: 'verify_organization',
+        payload: { admin, username, token, organization, uri: `${this.registryAPI}/verify/${organization}` }
+      }))
     }
   }
 
@@ -128,31 +149,7 @@ export default class RegistryActions {
     })
   }
 
-  validateAdmin({ username, token, organization }) {
-    return new Promise((resolve, reject) => {
-      // console.log('username, token, organization', username, token, organization)
-      const github = new GitHubAPI({ username, token })
-      const user = github.getUser()
-      const org = github.getOrganization(organization)
-      let profile
-      Promise.resolve(user.getProfile()).then(({ data }) => {
-        profile = data
-        return org.listMembers({ role: 'admin' })
-      }).then(({ data }) => {
-        return data
-      }).map((member) => {
-        if (member.login == profile.login) {
-          resolve(true)
-        } else {
-          return null
-        }
-      }).then(() => {
-        resolve(false)
-      }).catch((error) => {
-        reject(error)
-      })
-    })
-  }
+
 
   // watchRegitrations({ fromBlock=0, toBlock='latest' }) {
   //   return (dispatch) => {

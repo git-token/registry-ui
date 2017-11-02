@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import Web3 from 'web3'
 
-import { Registry, Main } from './components/index';
+import { Main } from './components/index';
 
 import { store, history } from './store'
 import { web3Provider } from '../app.config'
@@ -25,9 +25,6 @@ window.addEventListener('load', () => {
           <div style={{ background: 'linear-gradient(45deg, #0c0019, #493f5b)', height: '100%', color: '#fff' }}>
             <Switch>
               <Route exact path="/" component={Main}/>
-              <Route exact path="/registry" component={Registry['RegisteredOrganizations']}/>
-            <Route path="/register" component={Registry['Register']}/>
-            <Route path="/admin" component={Registry['Create']}/>
             </Switch>
           </div>
       </Provider>

@@ -28,7 +28,7 @@ export default class FormItem extends Component {
 
     return (
       <FormGroup
-        bsSize={ bsSize ? bsSize : 'large' }
+        bsSize={ bsSize ? bsSize : 'small' }
         controlId={controlId}
         validationState={validationState()} >
           <ControlLabel>{label}</ControlLabel>

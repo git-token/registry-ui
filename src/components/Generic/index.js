@@ -1,7 +1,9 @@
-import FormItem from './FormItem.jsx'
-import Splash from './Splash.jsx'
+import FormItem from './FormItem'
+import Splash from './Splash'
+import TOS from './TOS'
 
 export {
   Splash,
   FormItem,
+  TOS
 }

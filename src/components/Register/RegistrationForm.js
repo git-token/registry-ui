@@ -9,11 +9,14 @@ import {
   Panel
 } from 'react-bootstrap'
 
-import { MainLogo } from '../SVG/index'
+import NetworkLogo from 'gittoken-svg-icons/dist/NetworkLogo'
 import { FormItem } from '../Generic/index'
-import TOS from './TOS.jsx'
 
-class RegisterComponent extends Component {
+import {
+  registryActions
+} from '../../actions/index'
+
+class RegistrationFormComponent extends Component {
   constructor() {
     super()
 
@@ -50,24 +53,12 @@ class RegisterComponent extends Component {
     const max = 18
 
     return (
-      <div>
-        <Panel style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.4)',
-            marginTop: '25px'
-          }}
-          collapsible
-          expanded={showRegistration}
-        >
-          <div style={{ textAlign: 'center' }}>
-            <MainLogo width={'25%'} />
-            <h1 style={{ fontSize: '36px' }}>Register Your GitHub Organization with GitToken</h1>
-            <br/>
-            <hr/>
-          </div>
+      <Row>
+        <Col sm={6}>
           <form>
             <FormItem
               type={'text'}
-              value={adminAddress}
+              value={adminAddress != '0x0' ? adminAddress : '0xa5A399b863063b466b26493734972f95d8084A48' }
               placeholder={'0x0'}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
@@ -77,7 +68,7 @@ class RegisterComponent extends Component {
             />
             <FormItem
               type={'text'}
-              value={adminUsername ? adminUsername : ''}
+              value={adminUsername ? adminUsername : 'Ryanmtate'}
               placeholder={''}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
@@ -87,7 +78,7 @@ class RegisterComponent extends Component {
             />
             <FormItem
               type={'password'}
-              value={authToken ? authToken : ''}
+              value={authToken ? authToken : '68e6403d2c20b0f19cedee6826074068b88e1ed0'}
               placeholder={''}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
@@ -97,7 +88,7 @@ class RegisterComponent extends Component {
             />
             <FormItem
               type={'text'}
-              value={organization ? organization : ''}
+              value={organization ? organization : 'economic-network'}
               placeholder={'git-token'}
               onChange={this.setValue.bind(this)}
               validationState={this.validateOrganization}
@@ -105,9 +96,13 @@ class RegisterComponent extends Component {
               controlId={'organization'}
               help={'Please input your GitHub organization name. (e.g. git-token)'}
             />
+          </form>
+        </Col>
+        <Col sm={6}>
+          <form>
             <FormItem
               type={'text'}
-              value={tokenName ? tokenName : ''}
+              value={tokenName ? tokenName : 'EconomicNetwork'}
               placeholder={'GitToken'}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
@@ -117,7 +112,7 @@ class RegisterComponent extends Component {
             />
             <FormItem
               type={'text'}
-              value={symbol ? symbol : ''}
+              value={symbol ? symbol : 'EN'}
               placeholder={'GTK'}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
@@ -127,7 +122,7 @@ class RegisterComponent extends Component {
             />
             <FormItem
               type={'number'}
-              value={decimals ? decimals : ''}
+              value={decimals ? decimals : 8}
               placeholder={8}
               min={min}
               max={max}
@@ -138,22 +133,26 @@ class RegisterComponent extends Component {
               help={`Enter desired token decimal places of precision. Min=${min}; Max=${max}`}
             />
           </form>
-          <br/>
-          <div style={{ textAlign: 'center' }}>
-            <Button
-              bsSize={'lg'}
-              bsStyle={'info'}
-              onClick={ () => {
-                dispatch({ type: 'SET_REGISTRATION_DETAILS', id: 'tos', value: !tos })
-              } }
-              block
-            > Register!
-            </Button>
-            <br/>
-          <TOS />
-          </div>
-        </Panel>
-      </div>
+        </Col>
+        <Col sm={12}>
+          <Button
+            bsSize={'sm'}
+            bsStyle={'primary'}
+            onClick={() => {
+              dispatch({ type: 'SET_REGISTRATION_DETAILS', id: 'activeSlide', value: 'verification' })
+              dispatch(registryActions.verifyOrganization({
+                admin: adminAddress,
+                username: adminUsername,
+                token: authToken,
+                organization
+              }))
+            }}
+            block
+          > Verify GitHub Organization
+          </Button>
+        </Col>
+        <Col sm={12}><hr/></Col>
+      </Row>
     )
   }
 }
@@ -165,6 +164,6 @@ const mapStoreToProps = (store, props) => {
   }
 }
 
-const Register = connect(mapStoreToProps)(RegisterComponent)
+const RegistrationForm = connect(mapStoreToProps)(RegistrationFormComponent)
 
-export default Register
+export default RegistrationForm

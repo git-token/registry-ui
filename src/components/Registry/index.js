@@ -1,9 +1,5 @@
-import Register from './Register.jsx'
-import RegisteredOrganizations from './RegisteredOrganizations.jsx'
-import TOS from './TOS.jsx'
+import RegisteredOrganizations from './RegisteredOrganizations'
 
 export {
-  RegisteredOrganizations,
-  Register,
-  TOS,
+  RegisteredOrganizations
 }

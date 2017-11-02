@@ -1,6 +1,6 @@
-import * as Registry from './Registry/index.js'
-import * as Stats from './Stats/index.js'
-import Main from './Main.jsx'
+import * as Registry from './Registry/index'
+import * as Stats from './Stats/index'
+import Main from './Main'
 
 export {
   Registry,

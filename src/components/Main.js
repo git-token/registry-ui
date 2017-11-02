@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 import { Grid, Row, Col, Panel, Button } from 'react-bootstrap'
 
-import RegisteredOrganizations from '../../dist/components/Registry/RegisteredOrganizations'
+import RegisteredOrganizations from './Registry/RegisteredOrganizations'
+import { Register } from './Register/index'
 
 import {
   registryActions
@@ -33,8 +34,16 @@ class MainComponent extends Component {
             height: '1200px'
           }}>
             <Row>
-              <Col sm={12}>
+              <Col sm={5}>
+                <Register />
+              </Col>
+              <Col sm={7}>
                 <RegisteredOrganizations />
+              </Col>
+            </Row>
+            <Row>
+              <Col sm={12}>
+
               </Col>
             </Row>
           </Panel>
