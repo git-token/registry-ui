@@ -58,7 +58,7 @@ class RegistrationFormComponent extends Component {
           <form>
             <FormItem
               type={'text'}
-              value={adminAddress != '0x0' ? adminAddress : '0xa5A399b863063b466b26493734972f95d8084A48' }
+              value={adminAddress != '0x0' ? adminAddress : '' }
               placeholder={'0x0'}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
@@ -68,7 +68,7 @@ class RegistrationFormComponent extends Component {
             />
             <FormItem
               type={'text'}
-              value={adminUsername ? adminUsername : 'Ryanmtate'}
+              value={adminUsername ? adminUsername : ''}
               placeholder={''}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
@@ -78,7 +78,7 @@ class RegistrationFormComponent extends Component {
             />
             <FormItem
               type={'password'}
-              value={authToken ? authToken : '68e6403d2c20b0f19cedee6826074068b88e1ed0'}
+              value={authToken ? authToken : ''}
               placeholder={''}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
@@ -88,7 +88,7 @@ class RegistrationFormComponent extends Component {
             />
             <FormItem
               type={'text'}
-              value={organization ? organization : 'economic-network'}
+              value={organization ? organization : ''}
               placeholder={'git-token'}
               onChange={this.setValue.bind(this)}
               validationState={this.validateOrganization}
@@ -102,7 +102,7 @@ class RegistrationFormComponent extends Component {
           <form>
             <FormItem
               type={'text'}
-              value={tokenName ? tokenName : 'EconomicNetwork'}
+              value={tokenName ? tokenName : ''}
               placeholder={'GitToken'}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
@@ -112,7 +112,7 @@ class RegistrationFormComponent extends Component {
             />
             <FormItem
               type={'text'}
-              value={symbol ? symbol : 'EN'}
+              value={symbol ? symbol : ''}
               placeholder={'GTK'}
               onChange={this.setValue.bind(this)}
               validationState={() => { return null }}
