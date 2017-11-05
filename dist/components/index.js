@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Stats = exports.Main = exports.Registry = undefined;
 
-var _index = require('./Registry/index.js');
+var _index = require('./Registry/index');
 
 var Registry = _interopRequireWildcard(_index);
 
-var _index2 = require('./Stats/index.js');
+var _index2 = require('./Stats/index');
 
 var Stats = _interopRequireWildcard(_index2);
 
-var _Main = require('./Main.jsx');
+var _Main = require('./Main');
 
 var _Main2 = _interopRequireDefault(_Main);
 

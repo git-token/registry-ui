@@ -12,7 +12,19 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = require('react-redux');
+
 var _reactBootstrap = require('react-bootstrap');
+
+var _NetworkLogo = require('gittoken-svg-icons/dist/NetworkLogo');
+
+var _NetworkLogo2 = _interopRequireDefault(_NetworkLogo);
+
+var _index = require('../Generic/index');
+
+var _RegistrationForm = require('./RegistrationForm');
+
+var _RegistrationForm2 = _interopRequireDefault(_RegistrationForm);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,50 +34,79 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _ref = _jsx(_reactBootstrap.FormControl.Feedback, {});
+var _ref = _jsx('h1', {}, void 0, 'GitToken Registry');
 
-var FormItem = function (_Component) {
-  _inherits(FormItem, _Component);
+var _ref2 = _jsx('br', {});
 
-  function FormItem() {
-    _classCallCheck(this, FormItem);
+var _ref3 = _jsx(_reactBootstrap.Col, {
+  sm: 12
+}, void 0, _jsx('hr', {}));
 
-    return _possibleConstructorReturn(this, (FormItem.__proto__ || Object.getPrototypeOf(FormItem)).call(this));
+var GettingStartedComponent = function (_Component) {
+  _inherits(GettingStartedComponent, _Component);
+
+  function GettingStartedComponent() {
+    _classCallCheck(this, GettingStartedComponent);
+
+    return _possibleConstructorReturn(this, (GettingStartedComponent.__proto__ || Object.getPrototypeOf(GettingStartedComponent)).call(this));
   }
 
-  _createClass(FormItem, [{
+  _createClass(GettingStartedComponent, [{
+    key: 'setValue',
+    value: function setValue(e) {
+      var dispatch = this.props.dispatch;
+      var _e$target = e.target,
+          value = _e$target.value,
+          id = _e$target.id;
+
+
+      dispatch({ type: 'SET_REGISTRATION_DETAILS', id: id, value: value });
+    }
+  }, {
+    key: 'validateOrganization',
+    value: function validateOrganization() {
+      return null;
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
-          type = _props.type,
-          value = _props.value,
-          placeholder = _props.placeholder,
-          onChange = _props.onChange,
-          validationState = _props.validationState,
-          label = _props.label,
-          controlId = _props.controlId,
-          help = _props.help,
-          min = _props.min,
-          max = _props.max,
-          bsSize = _props.bsSize;
+          dispatch = _props.dispatch,
+          tos = _props.Register.tos;
 
 
-      return _jsx(_reactBootstrap.FormGroup, {
-        bsSize: bsSize ? bsSize : 'small',
-        controlId: controlId,
-        validationState: validationState()
-      }, void 0, _jsx(_reactBootstrap.ControlLabel, {}, void 0, label), _jsx(_reactBootstrap.FormControl, {
-        type: type,
-        value: value,
-        placeholder: placeholder,
-        onChange: onChange,
-        min: min,
-        max: max
-      }), _ref, help ? _jsx(_reactBootstrap.HelpBlock, {}, void 0, help) : null);
+      return _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
+        sm: 12
+      }, void 0, _jsx('div', {
+        style: { textAlign: 'center' }
+      }, void 0, _jsx(_NetworkLogo2.default, {
+        width: '50%',
+        style: { marginBottom: '-10%' }
+      }), _ref, _ref2), _jsx(_reactBootstrap.Button, {
+        onClick: function onClick() {
+          dispatch({ type: 'SET_REGISTRATION_DETAILS', id: 'tos', value: !tos });
+        },
+        bsSize: 'sm',
+        bsStyle: 'info',
+        block: true
+      }, void 0, 'Register GitHub Organization'), _jsx(_index.TOS, {
+        onAgree: function onAgree() {
+          dispatch({ type: 'SET_REGISTRATION_DETAILS', id: 'activeSlide', value: 'registrationForm' });
+          dispatch({ type: 'SET_REGISTRATION_DETAILS', id: 'tos', value: false });
+        }
+      })), _ref3);
     }
   }]);
 
-  return FormItem;
+  return GettingStartedComponent;
 }(_react.Component);
 
-exports.default = FormItem;
+var mapStoreToProps = function mapStoreToProps(store, props) {
+  return {
+    Register: store.Register
+  };
+};
+
+var GettingStarted = (0, _reactRedux.connect)(mapStoreToProps)(GettingStartedComponent);
+
+exports.default = GettingStarted;

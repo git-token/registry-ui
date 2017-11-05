@@ -16,7 +16,11 @@ var _reactRedux = require('react-redux');
 
 var _reactBootstrap = require('react-bootstrap');
 
-var _Summary = require('../../../dist/components/Organization/Summary');
+var _NetworkLogo = require('gittoken-svg-icons/dist/NetworkLogo');
+
+var _NetworkLogo2 = _interopRequireDefault(_NetworkLogo);
+
+var _Summary = require('../Organization/Summary');
 
 var _Summary2 = _interopRequireDefault(_Summary);
 
@@ -34,7 +38,7 @@ var _ref2 = _jsx('p', {}, void 0, 'Hello');
 
 var _ref3 = _jsx('p', {}, void 0, 'Hello');
 
-var _ref4 = _jsx('h3', {}, void 0, 'Registered Organizations');
+var _ref4 = _jsx('h1', {}, void 0, 'Search Filter');
 
 var RegisteredOrganizationsComponent = function (_Component) {
   _inherits(RegisteredOrganizationsComponent, _Component);
@@ -54,7 +58,7 @@ var RegisteredOrganizationsComponent = function (_Component) {
       var organizations = this.props.Registry.organizations;
 
 
-      return Object.keys(organizations).map(function (organization) {
+      return Object.keys(organizations).map(function (organization, i) {
         var _organization = organizations[organization]._organization;
 
         return _jsx(_reactBootstrap.Panel, {
@@ -64,13 +68,15 @@ var RegisteredOrganizationsComponent = function (_Component) {
             borderStyle: 'solid',
             borderColor: '#e95420'
           },
-          header: _jsx('h2', {}, void 0, _organization)
+          collapsible: true,
+          expanded: false,
+          header: _jsx('h2', {}, void 0, i, ' | ', _organization)
         }, void 0, _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
-          sm: 4
+          sm: 5
         }, void 0, _jsx(_Summary2.default, {
           organization: organizations[organization]
         })), _jsx(_reactBootstrap.Col, {
-          sm: 8
+          sm: 7
         }, void 0, _jsx(_reactBootstrap.Panel, {
           style: {
             backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -79,7 +85,7 @@ var RegisteredOrganizationsComponent = function (_Component) {
             borderColor: '#e95420'
           }
         }, void 0, _ref))), _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
-          sm: 4
+          sm: 5
         }, void 0, _jsx(_reactBootstrap.Panel, {
           style: {
             backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -88,7 +94,7 @@ var RegisteredOrganizationsComponent = function (_Component) {
             borderColor: '#e95420'
           }
         }, void 0, _ref2)), _jsx(_reactBootstrap.Col, {
-          sm: 8
+          sm: 7
         }, void 0, _jsx(_reactBootstrap.Panel, {
           style: {
             backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -112,8 +118,18 @@ var RegisteredOrganizationsComponent = function (_Component) {
           borderStyle: 'solid',
           borderColor: '#e95420'
         },
-        header: _ref4
-      }, void 0, this.organizations()));
+        header: _jsx('h3', {}, void 0, _jsx(_NetworkLogo2.default, {
+          width: '42px',
+          style: { marginTop: '-10px', marginBottom: '-16px', marginRight: '-8px' }
+        }), ' | Registered Organizations')
+      }, void 0, _jsx(_reactBootstrap.Panel, {
+        style: {
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          margin: '5px',
+          borderStyle: 'solid',
+          borderColor: '#e95420'
+        }
+      }, void 0, _ref4), this.organizations()));
     }
   }]);
 

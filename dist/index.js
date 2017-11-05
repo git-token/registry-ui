@@ -26,11 +26,11 @@ var _app = require('../app.config');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _ref = _jsx(_reactRouterDom.Route, {
+var _ref = _jsx(_reactRouterDom.Switch, {}, void 0, _jsx(_reactRouterDom.Route, {
   exact: true,
   path: '/',
   component: _index.Main
-});
+}));
 
 window.addEventListener('load', function () {
 
@@ -44,15 +44,5 @@ window.addEventListener('load', function () {
     store: _store.store
   }, void 0, _jsx('div', {
     style: { background: 'linear-gradient(45deg, #0c0019, #493f5b)', height: '100%', color: '#fff' }
-  }, void 0, _jsx(_reactRouterDom.Switch, {}, void 0, _ref, _jsx(_reactRouterDom.Route, {
-    exact: true,
-    path: '/registry',
-    component: _index.Registry['RegisteredOrganizations']
-  }), _jsx(_reactRouterDom.Route, {
-    path: '/register',
-    component: _index.Registry['Register']
-  }), _jsx(_reactRouterDom.Route, {
-    path: '/admin',
-    component: _index.Registry['Create']
-  }))))), document.getElementById('app'));
+  }, void 0, _ref))), document.getElementById('app'));
 });

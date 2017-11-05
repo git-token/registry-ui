@@ -16,7 +16,13 @@ var _reactRedux = require('react-redux');
 
 var _reactBootstrap = require('react-bootstrap');
 
-var _index = require('../actions/index');
+var _RegisteredOrganizations = require('./Registry/RegisteredOrganizations');
+
+var _RegisteredOrganizations2 = _interopRequireDefault(_RegisteredOrganizations);
+
+var _index = require('./Register/index');
+
+var _index2 = require('../actions/index');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,8 +33,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _ref = _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
+  sm: 5
+}, void 0, _jsx(_index.Register, {})), _jsx(_reactBootstrap.Col, {
+  sm: 7
+}, void 0, _jsx(_RegisteredOrganizations2.default, {})));
+
+var _ref2 = _jsx(_reactBootstrap.Row, {}, void 0, _jsx(_reactBootstrap.Col, {
   sm: 12
-}, void 0, _jsx(RegisteredOrganizations, {})));
+}, void 0));
 
 var MainComponent = function (_Component) {
   _inherits(MainComponent, _Component);
@@ -45,7 +57,7 @@ var MainComponent = function (_Component) {
       var dispatch = this.props.dispatch;
 
 
-      dispatch(_index.registryActions.getRegitrations());
+      dispatch(_index2.registryActions.getRegitrations());
     }
   }, {
     key: 'render',
@@ -64,7 +76,7 @@ var MainComponent = function (_Component) {
           borderColor: '#e95420',
           height: '1200px'
         }
-      }, void 0, _ref));
+      }, void 0, _ref, _ref2));
     }
   }]);
 

@@ -12,7 +12,27 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = require('react-redux');
+
 var _reactBootstrap = require('react-bootstrap');
+
+var _NetworkLogo = require('gittoken-svg-icons/dist/NetworkLogo');
+
+var _NetworkLogo2 = _interopRequireDefault(_NetworkLogo);
+
+var _index = require('../Generic/index');
+
+var _GettingStarted = require('./GettingStarted');
+
+var _GettingStarted2 = _interopRequireDefault(_GettingStarted);
+
+var _RegistrationForm = require('./RegistrationForm');
+
+var _RegistrationForm2 = _interopRequireDefault(_RegistrationForm);
+
+var _VerificationStatus = require('./VerificationStatus');
+
+var _VerificationStatus2 = _interopRequireDefault(_VerificationStatus);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,50 +42,82 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _ref = _jsx(_reactBootstrap.FormControl.Feedback, {});
+var _ref = _jsx(_RegistrationForm2.default, {});
 
-var FormItem = function (_Component) {
-  _inherits(FormItem, _Component);
+var _ref2 = _jsx(_VerificationStatus2.default, {});
 
-  function FormItem() {
-    _classCallCheck(this, FormItem);
+var _ref3 = _jsx(_GettingStarted2.default, {});
 
-    return _possibleConstructorReturn(this, (FormItem.__proto__ || Object.getPrototypeOf(FormItem)).call(this));
+var RegisterComponent = function (_Component) {
+  _inherits(RegisterComponent, _Component);
+
+  function RegisterComponent() {
+    _classCallCheck(this, RegisterComponent);
+
+    return _possibleConstructorReturn(this, (RegisterComponent.__proto__ || Object.getPrototypeOf(RegisterComponent)).call(this));
   }
 
-  _createClass(FormItem, [{
+  _createClass(RegisterComponent, [{
+    key: 'setValue',
+    value: function setValue(e) {
+      var dispatch = this.props.dispatch;
+      var _e$target = e.target,
+          value = _e$target.value,
+          id = _e$target.id;
+
+
+      dispatch({ type: 'SET_REGISTRATION_DETAILS', id: id, value: value });
+    }
+  }, {
+    key: 'renderSlide',
+    value: function renderSlide() {
+      var activeSlide = this.props.Register.activeSlide;
+
+      switch (activeSlide) {
+        case 'registrationForm':
+          return _ref;
+          break;
+        case 'verification':
+          return _ref2;
+          break;
+        default:
+          return _ref3;
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
-          type = _props.type,
-          value = _props.value,
-          placeholder = _props.placeholder,
-          onChange = _props.onChange,
-          validationState = _props.validationState,
-          label = _props.label,
-          controlId = _props.controlId,
-          help = _props.help,
-          min = _props.min,
-          max = _props.max,
-          bsSize = _props.bsSize;
+          dispatch = _props.dispatch,
+          activeSlide = _props.Register.activeSlide;
 
 
-      return _jsx(_reactBootstrap.FormGroup, {
-        bsSize: bsSize ? bsSize : 'small',
-        controlId: controlId,
-        validationState: validationState()
-      }, void 0, _jsx(_reactBootstrap.ControlLabel, {}, void 0, label), _jsx(_reactBootstrap.FormControl, {
-        type: type,
-        value: value,
-        placeholder: placeholder,
-        onChange: onChange,
-        min: min,
-        max: max
-      }), _ref, help ? _jsx(_reactBootstrap.HelpBlock, {}, void 0, help) : null);
+      return _jsx('div', {}, void 0, _jsx(_reactBootstrap.Panel, {
+        style: {
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          margin: '5px',
+          borderStyle: 'solid',
+          borderColor: '#e95420'
+        },
+        header: _jsx('h1', {}, void 0, _jsx(_NetworkLogo2.default, {
+          width: '42px',
+          style: { marginTop: '-10px', marginBottom: '-16px', marginRight: '-8px' }
+        }), '  | Register Organization'),
+        collapsible: true,
+        expanded: true
+      }, void 0, this.renderSlide()));
     }
   }]);
 
-  return FormItem;
+  return RegisterComponent;
 }(_react.Component);
 
-exports.default = FormItem;
+var mapStoreToProps = function mapStoreToProps(store, props) {
+  return {
+    Register: store.Register
+  };
+};
+
+var Register = (0, _reactRedux.connect)(mapStoreToProps)(RegisterComponent);
+
+exports.default = Register;

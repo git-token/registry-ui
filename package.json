@@ -1,6 +1,6 @@
 {
   "name": "gittoken-registry-ui",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "description": "GitToken Registry React Components for GitToken Solidity Smart Contracts",
   "main": "./dist/index.js",
   "scripts": {

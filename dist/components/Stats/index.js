@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TotalTokens = exports.TotalOrganizations = exports.TotalContributors = undefined;
 
-var _TotalContributors = require('./TotalContributors.jsx');
+var _TotalContributors = require('./TotalContributors');
 
 var _TotalContributors2 = _interopRequireDefault(_TotalContributors);
 
-var _TotalOrganizations = require('./TotalOrganizations.jsx');
+var _TotalOrganizations = require('./TotalOrganizations');
 
 var _TotalOrganizations2 = _interopRequireDefault(_TotalOrganizations);
 
-var _TotalTokens = require('./TotalTokens.jsx');
+var _TotalTokens = require('./TotalTokens');
 
 var _TotalTokens2 = _interopRequireDefault(_TotalTokens);
 
